@@ -5,14 +5,14 @@ const moment = require("moment");
 require("moment-duration-format");
 const momenttz = require('moment-timezone');
 const MessageAdd = require('./db/message_add.js')
-const welcomeChannelName = "안녕하세요";
+const welcomeChannelName = "일반";
 const byeChannelName = "안녕히가세요";
-const welcomeChannelComment = "어서오세요.";
-const byeChannelComment = "안녕히가세요.";
+const welcomeChannelComment = "어서와요!채무의 숲🌳 입니다.";
+const byeChannelComment = "잘가요! 🧾빚을 다 청산 하셨군요.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '!help를 쳐보세요.' }, status: 'online' })
+  client.user.setPresence({ game: { name: '!help' }, status: '' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -22,7 +22,7 @@ client.on("guildMemberAdd", (member) => {
 
   welcomeChannel.send(`<@${newUser.id}> ${welcomeChannelComment}\n`);
 
-  member.addRole(guild.roles.find(role => role.name == "게스트"));
+  member.addRole(guild.roles.find(role => role.name == "인턴"));
 });
 
 client.on("guildMemberRemove", (member) => {
@@ -49,9 +49,9 @@ client.on('message', (message) => {
     let embed = new Discord.RichEmbed()
     let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
     var duration = moment.duration(client.uptime).format(" D [일], H [시간], m [분], s [초]");
-    embed.setColor('#186de6')
-    embed.setAuthor('server info of 콜라곰 BOT', img)
-    embed.setFooter(`콜라곰 BOT ❤️`)
+    embed.setColor('#01DF3A')
+    embed.setAuthor('채무의 숲 서버', img)
+    embed.setFooter(`대구대학교 봇 😻`)
     embed.addBlankField()
     embed.addField('RAM usage',    `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true);
     embed.addField('running time', `${duration}`, true);
@@ -81,7 +81,7 @@ client.on('message', (message) => {
     let embed = new Discord.RichEmbed()
       .setTitle('타이틀')
       .setURL('http://www.naver.com')
-      .setAuthor('나긋해', img, 'http://www.naver.com')
+      .setAuthor('대구대학교', img, 'https://daegu.ac.kr/article/DG159/list')
       .setThumbnail(img)
       .addBlankField()
       .addField('Inline field title', 'Some value here')
@@ -91,7 +91,7 @@ client.on('message', (message) => {
       .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n')
       .addBlankField()
       .setTimestamp()
-      .setFooter('나긋해가 만듬', img)
+      .setFooter('성후닝 제작', img)
 
     message.channel.send(embed)
   } else if(message.content == '!help') {
@@ -108,9 +108,9 @@ client.on('message', (message) => {
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
-      .setAuthor('Help of 콜라곰 BOT', helpImg)
-      .setColor('#186de6')
-      .setFooter(`콜라곰 BOT ❤️`)
+      .setAuthor('Help of 대구대학교 봇', helpImg)
+      .setColor('##01DF3A')
+      .setFooter(`대구대학교 봇 😻`)
       .setTimestamp()
     
     commandList.forEach(x => {
